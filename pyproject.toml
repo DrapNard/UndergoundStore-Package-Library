@@ -1,0 +1,44 @@
+[project]
+name = "uspkg"
+version = "0.0.1"
+authors = [
+  { name = "DrapNard", email = "haimirgaming@gmail.com" }
+]
+description = "A simple library for the creation, verification, and extraction of the USPkg package format."
+readme = "README.md"  # Or the detailed form: { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "msgpack>=1.0",
+    "cryptography>=41.0",
+    "tqdm>=4.64",
+    "pillow>=9.0",
+    "zipp>=3.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/DrapNard/UndergoundStore-Package-Library"
+Issues = "https://github.com/DrapNard/UndergoundStore-Package-Library/issues"
+
+[project.scripts]
+uspkg-cli = "uspkg.uspkg_cli:main"
+
+[project.gui-scripts]
+uspkg-gui = "uspkg.uspkg_gui:main"
+
+[project.optional-dependencies]
+gui = [
+    "tkinter",
+    "pillow",
+    "threading"
+]
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"

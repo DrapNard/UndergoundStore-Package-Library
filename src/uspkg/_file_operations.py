@@ -4,7 +4,7 @@ import io
 from ._utils import _calculate_sha256
 
 def _zip_folder(folder_path, update_progress_callback=None):
-    metadata = {"files": {}}
+    metadata = {"files": {}, "zipHash": ""}
     zip_file_path = 'temp_folder.zip'
 
     # Calculate total number of files
@@ -24,6 +24,7 @@ def _zip_folder(folder_path, update_progress_callback=None):
                 if update_progress_callback:
                     update_progress_callback(progress_percent)
                 
+    metadata["zipHash"] = _calculate_sha256(zip_file_path)
     return zip_file_path, metadata
 
 def _extract_zip(zip_data, output_dir):

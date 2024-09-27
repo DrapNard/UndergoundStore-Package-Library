@@ -4,7 +4,7 @@ import os
 METADATA_SIZE_BYTES = 8
 AES_BLOCK_SIZE = 16
 
-def _write_uspkg(output_file, encrypted_zip_data, iv, metadata):
+def write_uspkg(output_file, encrypted_zip_data, iv, metadata):
     packed_msgpack = msgpack.packb(metadata, use_bin_type=True)
     with open(output_file, 'wb') as f_out:
         f_out.write(encrypted_zip_data)
@@ -12,7 +12,7 @@ def _write_uspkg(output_file, encrypted_zip_data, iv, metadata):
         f_out.write(packed_msgpack)
         f_out.write(len(packed_msgpack).to_bytes(METADATA_SIZE_BYTES, 'big'))
 
-def _read_uspkg_metadata(uspkg_file):
+def read_uspkg_metadata(uspkg_file):
     with open(uspkg_file, 'rb') as f_in:
         f_in.seek(0, os.SEEK_END)
         file_size = f_in.tell()
